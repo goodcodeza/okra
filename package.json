@@ -1,0 +1,11 @@
+{
+  "name": "okra",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "question:1": "node ./question_1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
