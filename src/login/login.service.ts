@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { LoginUserDto } from 'src/dto/login-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Injectable()
 export class LoginService {
   login(loginUserDto: LoginUserDto) {
-    return '';
+    return 'This action logs a user into the application';
   }
 }
