@@ -1,1 +1,4 @@
-export class Customer {}
+export class Customer {
+  bvn: string;
+  id: string;
+}

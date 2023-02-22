@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UseGuards,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { PrincipalGuard } from 'src/guards/principal/principal.guard';
@@ -8,13 +16,21 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    const user = await this.usersService.create(createUserDto);
+    if (!user) {
+      throw new HttpException(
+        'Hint - the email may have been used already.', // TODO - Think of a better message that does not leak information.
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    return user;
   }
 
   @Get()
   @UseGuards(PrincipalGuard) // TODO - Add a Role Guard so that only ADMIN to check permissions
-  findAll() {
+  async findAll() {
     return this.usersService.findAll();
   }
 }

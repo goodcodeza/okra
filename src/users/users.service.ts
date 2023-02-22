@@ -1,42 +1,42 @@
 import { Injectable } from '@nestjs/common';
+import { User, Prisma } from '@prisma/client';
+import { PrismaService } from 'src/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [
-    {
-      email: 'nolan.pather@outlook.com',
-      firstName: 'nolan',
-      id: 1,
-      lastName: 'pather',
-      password: '12345',
-    },
-  ];
+  constructor(private readonly prismaService: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
-    const user: User = {
+  async create(createUserDto: CreateUserDto) {
+    const data: Prisma.UserCreateInput = {
       email: createUserDto.email.toLowerCase().trim(),
       firstName: createUserDto.firstName.trim(),
-      id: this.users.length + 1,
       lastName: createUserDto.lastName.trim(),
       password: createUserDto.password,
     };
-    this.users.push(user);
 
-    return user;
+    try {
+      const user = await this.prismaService.user.create({ data });
+
+      return this.toSafeUser(user);
+    } catch (error) {
+      console.error(error);
+
+      return null;
+    }
   }
 
-  findAll() {
-    return this.users.map(this.toSafeUser);
+  async findAll() {
+    const users = await this.prismaService.user.findMany();
+    return users.map(this.toSafeUser);
   }
 
   async findOne(email: string, password: string) {
-    const user = this.users.find(
-      (user) => user.email.toLowerCase() === email.toLowerCase(),
-    );
+    const user = await this.prismaService.user.findUnique({
+      where: { email: email.toLowerCase() },
+    });
 
-    // DO NO STORE PASSWORDS IN PLAIN TEXT - USE A SHA 256 HASH
+    // TODO - DO NO STORE PASSWORDS IN PLAIN TEXT - USE A SHA 256 HASH
     if (user && user.password === password) {
       return this.toSafeUser(user);
     }

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { PrismaService } from 'src/prisma.service';
 import { UsersService } from 'src/users/users.service';
 import { JwtStrategy } from './jwt.strategy';
 import { jwtConstants } from './login.constants';
@@ -14,6 +15,6 @@ import { LoginService } from './login.service';
       signOptions: { expiresIn: '120s' },
     }),
   ],
-  providers: [JwtStrategy, LoginService, UsersService],
+  providers: [JwtStrategy, LoginService, PrismaService, UsersService],
 })
 export class LoginModule {}
