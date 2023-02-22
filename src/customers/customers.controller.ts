@@ -1,5 +1,5 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
-import { PrincipalGuard } from 'src/principal/principal.guard';
+import { PrincipalGuard } from 'src/guards/principal/principal.guard';
 import { CustomersService } from './customers.service';
 
 @Controller('customers')
