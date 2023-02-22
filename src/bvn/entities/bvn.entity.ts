@@ -25,4 +25,7 @@ export const BVN_SCHEMA = z.object({
   MaritalStatus: z.string(),
   AccountLevel: z.string(),
   VerificationCountry: z.string(),
+  Washlist: z.boolean().optional().default(false),
 });
+
+export type BVN = z.infer<typeof BVN_SCHEMA>;

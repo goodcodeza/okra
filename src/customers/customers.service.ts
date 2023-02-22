@@ -36,4 +36,12 @@ export class CustomersService {
 
     return customer;
   }
+
+  async findOneByBVN(bvn: string) {
+    const customer = await this.prismaService.customer.findUnique({
+      where: { bvn },
+    });
+
+    return customer;
+  }
 }

@@ -21,14 +21,40 @@ model User {
 
 model Customer {
   id       String     @id @default(auto()) @map("_id") @db.ObjectId
-  bvn      String
+  bvn      String     @unique
   User     User       @relation(fields: [userId], references: [id])
   userId   String     @db.ObjectId
   Identity Identity[]
 }
 
 model Identity {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  customer   Customer @relation(fields: [customerId], references: [id])
-  customerId String   @db.ObjectId
+  id                           String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstname                    String
+  middlename                   String
+  lastname                     String
+  aliases                      String[]
+  dob                          String
+  address                      String
+  gender                       String
+  photo_id                     String
+  enrollment_date              String
+  enrollment_bank_code         String
+  phones                       String[]
+  emails                       String[]
+  fullname                     String
+  bvn                          String   @unique
+  customer                     Customer @relation(fields: [customerId], references: [id])
+  customerId                   String   @db.ObjectId
+  nin                          String
+  lga_origin                   String
+  lga_residence                String
+  nationality                  String
+  state_residence              String
+  state_origin                 String
+  enrollment_bank              String
+  enrollment_registration_date String
+  on_washlist                  Boolean
+  marital_status               String
+  account_level                String
+  verification_country         String
 }
