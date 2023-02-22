@@ -8,6 +8,14 @@
 $ npm install
 ```
 
+## Getting Started
+
+In the directory where you cloned this repository, perform the following tasks:
+
+1. Set up the environment variables for your development environment: `$ cp .env.example .env`.
+1. Update the **DATABASE_URL** variable in the `.env` file.
+1. Sync the database with the Prisma schema: `$ npx prisma db push`.
+
 ## Running the app
 
 ```bash
