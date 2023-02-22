@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Customer, Prisma } from '@prisma/client';
 import { format, parse } from 'date-fns';
-import { AccountsService } from 'src/accounts/accounts.service';
-import { BVNService } from 'src/bvn/bvn.service';
-import { BVN } from 'src/bvn/entities/bvn.entity';
-import { CustomersService } from 'src/customers/customers.service';
-import { NubanService } from 'src/nuban/nuban.service';
-import { PrismaService } from 'src/prisma.service';
+import { AccountsService } from '../accounts/accounts.service';
+import { BVNService } from '../bvn/bvn.service';
+import { BVN } from '../bvn/entities/bvn.entity';
+import { CustomersService } from '../customers/customers.service';
+import { NubanService } from '../nuban/nuban.service';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class IdentityService {

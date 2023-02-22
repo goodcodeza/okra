@@ -9,7 +9,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { PrincipalGuard } from 'src/guards/principal/principal.guard';
+import { PrincipalGuard } from '../guards/principal/principal.guard';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 

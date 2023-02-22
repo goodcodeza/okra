@@ -6,7 +6,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { PrincipalGuard } from 'src/guards/principal/principal.guard';
+import { PrincipalGuard } from '../guards/principal/principal.guard';
 import { ProcessIdentityDto } from './dto/process-identity.dto';
 import { IdentityService } from './identity.service';
 

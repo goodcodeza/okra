@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { PrincipalGuard } from 'src/guards/principal/principal.guard';
+import { PrincipalGuard } from '../guards/principal/principal.guard';
 
 @Controller('users')
 export class UsersController {
