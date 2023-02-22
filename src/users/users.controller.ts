@@ -4,7 +4,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { PrincipalGuard } from 'src/guards/principal/principal.guard';
 
 @Controller('users')
-@UseGuards(PrincipalGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -14,6 +13,7 @@ export class UsersController {
   }
 
   @Get()
+  @UseGuards(PrincipalGuard) // TODO - Add a Role Guard so that only ADMIN to check permissions
   findAll() {
     return this.usersService.findAll();
   }

@@ -16,7 +16,7 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto) {
     const user: User = {
-      email: createUserDto.email.trim(),
+      email: createUserDto.email.toLowerCase().trim(),
       firstName: createUserDto.firstName.trim(),
       id: this.users.length + 1,
       lastName: createUserDto.lastName.trim(),
