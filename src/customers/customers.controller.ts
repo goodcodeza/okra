@@ -1,7 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { PrincipalGuard } from 'src/principal/principal.guard';
 import { CustomersService } from './customers.service';
 
 @Controller('customers')
+@UseGuards(PrincipalGuard)
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
